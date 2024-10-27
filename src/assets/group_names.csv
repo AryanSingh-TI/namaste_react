@@ -1,0 +1,31 @@
+Button Label,Action Name,State Condition,User Group(s),Other Conditions
+Lending Pack,action_lending_pack,state in ['draft'],business_lending_application.group_level_1_editable,base.group_system
+Initial Meeting,action_initial_meeting,state in ['lending_sent'],business_lending_application.group_level_1_editable,base.group_system
+Information Received,action_info_received,state in ['internal_meet'],business_lending_application.group_level_1_editable,base.group_system
+Due Diligence,action_due_diligence,state in ['info_received'],business_lending_application.group_level_1_editable,base.group_system
+Proceed/Decline,action_proceed,state in ['due_diligence'],business_lending_application.group_level_1_editable,base.group_system
+Print Acknowledgement Letter,print_acknowlegement_letter,display_print_ack_button == True,N/A
+Print Decline Letter,%(business_application_decline_letter)d,state in ['decline'],business_lending_application.group_level_1_editable,base.group_system,business_lending_application.group_approver_user
+Repayment Capacity,action_review_account,state in ['financial_account'],business_lending_application.group_level_1_editable,base.group_system
+Statement Details,action_statement_details,state in ['review_account'],business_lending_application.group_level_1_editable,base.group_system
+Document Upload,action_document_upload,state in ['credit_grading'],business_lending_application.group_level_1_editable,base.group_system
+Credit Grading,action_credit_grading,state in ['statement_details'],business_lending_application.group_level_1_editable,base.group_system
+Submit to Assessor,action_submit_to_assessor,state in ['document_upload'],business_lending_application.group_level_1_editable,base.group_system
+Complete Cover Note,action_fill_cover_note,state in ['cover_note'],business_lending_application.group_external_central_assessor_user,is_cover_note_filled == False
+Assign to Owner,action_assign_to_owner,state in ['cover_note'],business_lending_application.group_central_assessment,is_cover_note_filled == True
+Assign Decision Group,action_assign_group,state in ['document_upload','pre_approval'],business_lending_application.group_level_1_editable,base.group_system,is_user_discret == True/False
+Proceed,action_underwriter_decision,state in ['pre_approval','document_upload'],business_lending_application.group_level_1_editable,base.group_system,is_user_discret == False
+Record Decision,action_group_decision,state in ['pre_approval'],business_lending_application.group_approver_user,is_valid_user == True
+Refer Underwriter,action_group_assign_back,state in ['pre_approval'],business_lending_application.group_approver_user,is_valid_user == True
+Refer To Decision Group,action_refer_decision_group,state in ['pre_approval'],business_lending_application.group_approver_user,is_valid_approver == True
+Approval Letter,action_approval_letter,state in ['approved'],business_lending_application.group_level_1_editable,base.group_system
+Draw Down,action_draw_down,state in ['approval_letter'],business_lending_application.group_level_1_editable,is_draw_down == True
+Proceed (Final Decision),action_final_decision,state in ['approval_letter','draw_down'],business_lending_application.group_level_1_editable,is_draw_down == True
+Unlock,action_unlocker,state in ['approved','approval_letter','draw_down','funds_drawn'],business_lending_application.group_unlocker_user
+Print Approval Letter,action_approval_letter_print,display_print_approval_letter_button == True,N/A
+Print SBCI Approval Letter,action_sbci_approval_letter_print,display_print_sbci_approval_letter_button == True,N/A
+Back Navigation,action_back,state not in ['draft','close','decline','cover_note','pre_approval','approved','approval_letter','funds_drawn','draw_down'],business_lending_application.group_level_1_editable,base.group_system
+Close Application,action_close,state not in ['draft','close','decline','cover_note','pre_approval','approved','approval_letter','funds_drawn','draw_down'],business_lending_application.group_level_1_editable,base.group_system
+Decline,action_decline_app,state in ['document_upload','lending_sent','internal_meet','info_received','financial_account','review_account','statement_details','credit_grading'],business_lending_application.group_level_1_editable,base.group_system,show_cover_note == True
+Print DrawDown Letter,action_print_drawdown_letter,state in ['funds_drawn'],N/A
+
