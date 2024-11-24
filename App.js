@@ -11,8 +11,8 @@ import ReactDOM from "react-dom/client";
  * | - Search Bar                    |
  * | - Restaurant Card Container     |
  * |     - Restaurant Cards          |
- *         - Name of the restaurant  |
- *         - Img,Star Rating,Cuisine |
+ * |        - Name of the restaurant |
+ * |        - Img,Star Rating,Cuisine|
  * |>Footer                          |
  * |- Copyright                      |
  * |- Links                          |
@@ -50,7 +50,7 @@ const styleCard = {
     backgroundColor:"#D3D3D3",
 };// inline css can be given with the help of a javascript object in jsx
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
     return (
         <div className="res-card" style={styleCard}>
             <img 
@@ -58,26 +58,44 @@ const RestaurantCard = () => {
             alt="res-logo" 
             src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg"
             />
-            <h3>Mm..Food</h3>
-            <h4>Biryani ,North Indian, Asian</h4>
-            <h5>4.4 stars</h5>
-            <h5>35mins</h5>
+            <h3>{props.resName}</h3>
+            <h4>{props.cuisine}</h4>
+            <h5>{props.rating}</h5>
+            <h5>{props.delivery}</h5>
         </div>
     )
 }
+
 const Body = () => {
     return (
         <div className="body">
             <div className="Search">Search</div>
             <div className="res-container">
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
+                <RestaurantCard 
+                resName="Meghna Foods"
+                cuisine="Biryani, North Indian, Asian"
+                rating="4.4"
+                delivery="35mins"
+                />
+                <RestaurantCard
+                resName="KFC"
+                cuisine="Chimken"
+                rating="3.4"
+                delivery="15mins"
+                />
+                <RestaurantCard
+                resName="Burger King"
+                cuisine="Chimken Boorger"
+                rating="4.5"
+                delivery="25mins"
+                />
+                <RestaurantCard
+                resName="Baigan ka bharta"
+                cuisine="Baigan Dhaba"
+                rating="0.5"
+                delivery="5mins"
+                />
+                
             </div>
         </div>
     )
