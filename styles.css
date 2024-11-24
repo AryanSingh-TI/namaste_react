@@ -1,4 +1,38 @@
-#parent {
+.header {
+    display: flex;
+    justify-content: space-between;
+    border:1px solid black
+}
 
-    color:blueviolet
+.logo {
+    width: 120px;
+}
+.nav-items > ul {
+    font-size:18px;
+    display: flex;
+    list-style-type:none;
+}
+.nav-items > ul > li {
+    padding:30px;
+}
+
+.res-card {
+    width:200px;
+    height:360px;
+    border:1px solid black;
+    box-shadow: 5cqmin;
+    padding:10px;
+    margin:10px;
+}
+.res-card:hover {
+    cursor:pointer;
+    border:2px solid brown;
+}
+.res-container {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.search {
+    padding:10px;
 }
