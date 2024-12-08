@@ -37,14 +37,60 @@ Currently, two official plugins are available:
 ```
 
 # TWO types of Export/Import
-```
-- Default Export/Import
 
+- Default Export/Import
+```js
 export default component;
 import component from path;
-
+```
 - Named Export/Import
-
+```js
 export const component
 import {component} from path
+```
+- More about paths
+```
+(a) in path ../ is used to move up a level in the hierarchy of directories
+(b) while ./ means in the same directory
+(c) ./level_1/level_2 this means to move down two levels from the same directory
+(d) ../../utils/constants means to move up two levels(for example move out of components and then src in /src/components) and then go inside utils and get constants
+
+```
+
+# React Hooks
+```
+ (Normal JS utility functions)
+ - useState() => Used to generate Superpowerful State variables in React
+ - useEffect()
+
+```
+
+# React Algorithms
+```
+React uses reconciliation algorithm which is also known as React Fiber.
+Reconcialiation is whenever something changes in the UI, this algorithm came in React version 16 and from then onwards it was known as React Fiber.
+
+React Maintains a Virtual DOM which is a representation of the actual DOM consisting of HTML tags.
+The virtual DOM on the other hand contains javascript objects that represents the actual DOM.
+
+example:-
+                            {
+<div>                            div : {
+    <div>                                 div : {
+        <img/>   ===>                             img : ...
+    </div>                                      }
+</div>                                 }  
+                            }     
+
+HTML TAGS                        (VIRTUAL DOM)                               
+(ACTUAL DOM)                   Javascript Objects
+
+
+
+The diff Algorithm observes the change in the state of the virtual DOM that is faster than doing it in the Actual DOM and maintains State and Observes Change in the State Variable.
+
+When we click on a button the State Variable gets changed and the DIff Algorithm observes the changes in the pervious and current Virtual DOM and updates the UI accordingly.
+
+A normal javascript object doesn't update the Virtual DOM, a state variable like the UseState Hook does and that will update the UI.
+
 ```
