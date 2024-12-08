@@ -82,8 +82,8 @@ example:-
 </div>                                 }  
                             }     
 
-HTML TAGS                        (VIRTUAL DOM)                               
-(ACTUAL DOM)                   Javascript Objects
+HTML TAGS                      Javascript Objects                     
+(ACTUAL DOM)                     (VIRTUAL DOM)     
 
 
 
@@ -93,4 +93,47 @@ When we click on a button the State Variable gets changed and the DIff Algorithm
 
 A normal javascript object doesn't update the Virtual DOM, a state variable like the UseState Hook does and that will update the UI.
 
+```
+
+# Monolith
+
+```
+Monolithic architecture is a software design pattern where all components of an application are tightly integrated into a single codebase and executed as a single unit or process. This approach contrasts with modular or distributed architectures, such as microservices, where functionalities are divided into smaller, independently deployable services.
+```
+
+# Microservices
+```
+Microservices architecture is a software design approach where an application is built as a collection of small, loosely coupled, independently deployable services. Each service is responsible for a specific functionality or business capability and communicates with other services through well-defined APIs.
+
+Microservies can inlcude components like 
+- UI
+- Backend
+- Database
+- Messages & Notifications
+- Authentication
+All these services exist independently and ccommunicate with each other to form a large app.
+They can also be written in different languages with each service their own language.
+
+These services can be deployed on the different ports that can be integrated on our application's URL (domain name)
+```
+# Rendering Logic Approaches
+```
+
+(1) 1st Approach
+
+As soon as the page loads ----> Make an API call and wait for the API call to finish ----> then render the page after the API call is finished 
+
+(2) 2nd Approach
+
+Load the page ----> Render the skeleton of the website ----> Make an API call ----> Re-render the page after  populating the components from the data from the API call when the API call is finished
+
+
+In React, we will always use the second approach because in the first approach the user has to wait for everything to load until the API call is finished and then suddenly everything appears on the screen, that is a poor user experience, in comparison the second approach renders the skeleton of the website and basic UI as soon as the page loads and then makes the API call and rerenders the page with the data from the API call populating the components of the page as soon as the API call is finished finished.
+
+Even though we are rendering twice in the second approach it's optimal for user experience and react has very fast render cycles so it hardly matters.
+```
+# React Hooks
+```
+React Hooks are just a normal javascript function.
+which react provides to us and every hook have their own specific use case.
 ```
