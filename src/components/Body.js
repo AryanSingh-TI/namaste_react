@@ -11,7 +11,7 @@ const Body = () => {
 
     const [listOfRestaurants,setListOfRestaurants] = useState([]);
     //initially the default value of the listOfRestaurants will be an empty list
-    const [filteredRestaurants,setFilteredSetRestaurants] = useState(resList);
+    const [filteredRestaurants,setFilteredSetRestaurants] = useState([]);
 
     useEffect(()=>{
         console.log("useEffect Called");
@@ -23,17 +23,19 @@ const Body = () => {
     // 4) useEffect() will be called in the end after components have been rendered
     const fetchData = async () => {
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-          )
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4558205&lng=77.03665649999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+          ) //changed the link because API call changed
         //making a call to a random swiggy api and waiting till the API call is finished and the data is fetched
       
         const json = await data.json();
         //converting the data(string) to a JSON format and waiting till that has finished execution
         
-        console.log(json);
+        res = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants //changed the way by which we extracted relevant restaurant card info
+        console.log(res);
         //logging that json data
 
-        setListOfRestaurants(resList)
+        setListOfRestaurants(res)
+        setFilteredSetRestaurants(res)
         //then changing the value of the listOfRestaurant "useState" State variable and putting some restaurant values in it using the resList from the mockData.js
         //This will Re-render the UI and add some restaurant cards in the UI only after the API call is finished
       
@@ -109,8 +111,8 @@ const Body = () => {
             <div 
                 className="res-container">
                 {
-                    filteredRestaurants.map((restaurant) => <RestaurantCard key={restaurant.data.id} resData={restaurant}/>)
-                    //filteredRestaurants are used here instead of listOfRestaurants to render from the filtered Restaurant List
+                    filteredRestaurants.map((restaurant) => <RestaurantCard key={restaurant.info.id} resData={restaurant}/>)
+                    //filteredRestaurants are used here instead of listOfRestaurants to render from the filtered Restaurant `List
                 }
                     {/* keys need to be added while using iterative functions like map to uniquely identify the components in case of insertion or other operations so that react knows where to insert
                     and doesn't render all the components again
