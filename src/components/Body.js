@@ -2,6 +2,12 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+//Link is a special component given to use by react-router-dom 
+//It is used in loading components without reloading the whole page
+//Link uses the anchor tag itself under the hood, Link is a wrapper over the anchor tag
+//anchor tag by default reloads the page but when used under Link it only loads the corresponding component without reloading the whole page
+
 
 const Body = () => {
 
@@ -12,6 +18,8 @@ const Body = () => {
     const [listOfRestaurants,setListOfRestaurants] = useState([]);
     //initially the default value of the listOfRestaurants will be an empty list
     const [filteredRestaurants,setFilteredSetRestaurants] = useState([]);
+    //always call your hooks inside your functional component (at the top)
+    //never use useState() hook inside a conditional statement like if statement or iterative statement like for loop, according to react Documentation it is not a good practice
 
     useEffect(()=>{
         console.log("useEffect Called");
@@ -75,7 +83,7 @@ const Body = () => {
                                         {
 
                                             const filteredRestaurants = listOfRestaurants.filter(
-                                                (res) => res.data.name.toLowerCase().includes(searchText.toLowerCase())
+                                                (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
                                             )
                                             //filtering the listOfRestaurant on the condition that it includes the searchText
                                             //filteredRestaurants contains the list of restaurants filtered on the following condition and is passed as an argument in setFilteredSetRestaurants() to set the filteredRestaurants state variable
@@ -111,7 +119,7 @@ const Body = () => {
             <div 
                 className="res-container">
                 {
-                    filteredRestaurants.map((restaurant) => <RestaurantCard key={restaurant.info.id} resData={restaurant}/>)
+                    filteredRestaurants.map((restaurant) => <Link to={"/restaurants/"+restaurant.info.id}><RestaurantCard key={restaurant.info.id} resData={restaurant}/></Link>)
                     //filteredRestaurants are used here instead of listOfRestaurants to render from the filtered Restaurant `List
                 }
                     {/* keys need to be added while using iterative functions like map to uniquely identify the components in case of insertion or other operations so that react knows where to insert

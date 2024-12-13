@@ -1,15 +1,28 @@
 import {LOGO_URL} from "../../utils/constants"
-import { Component, useState } from "react";
+import { useEffect , useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
-    let [btnName,updateBtnName] = useState("Login");
+    const [btnName,updateBtnName] = useState("Login");
 
     console.log("Header rendered");
     // everytime we click on the button the entire header Component will be Re-rendered 
     // and this console log will be printed
 
-    return (
+    useEffect
+    (
+        () => 
+        {
+            console.log("useEffect is called after every render of that component");
+        },
+        [btnName] //dependency array is the second argument of useEffect and it is not a mandato ry argument
+    )
+    //if there is no dependency array useEffect will be called everytime the component is rendered
+    //an empty list [] as the dependency array(second argument of useEffect) would imply that the useEffect will only be called during the first render
+    //if dependency array is [btnNameReact] => useEffect() will be called everytime btnNameReact changes
+
+    return ( 
         <div className="header">
 
             <div>
@@ -21,9 +34,11 @@ const Header = () => {
 
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><a href="/about">About</a></li>
+                    {/* We prefer not to use the anchor tag because it re-renders everything even the header when the about us page has the same header */}
+                    <li><Link to="/contact">Contact Us</Link></li>
+                    {/* instead we prefer to use the Link tag  it will not re-render the entire page*/}
                     <li>Cart</li>
                     <button 
                         className="login" 

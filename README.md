@@ -137,3 +137,12 @@ Even though we are rendering twice in the second approach it's optimal for user 
 React Hooks are just a normal javascript function.
 which react provides to us and every hook have their own specific use case.
 ```
+
+# Routing types
+```
+- Client Side Routing
+    This is when we define routes in our application on the client side. When we already have a component in our source code for a route and we just load that component for that given route (url).
+
+- Server Side Routing
+    This is when we make network calls to render a page while routing from one page to another.
+```
